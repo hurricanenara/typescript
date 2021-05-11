@@ -1,45 +1,24 @@
-// enum can be used
-var ADMIN = 0;
-var READ_ONLY = 1;
-var AUTHOR = 2;
-var Role;
-(function (Role) {
-    Role[Role["ADMIN"] = 0] = "ADMIN";
-    Role[Role["READ_ONLY"] = 1] = "READ_ONLY";
-    Role[Role["AUTHOR"] = 2] = "AUTHOR";
-})(Role || (Role = {}));
-var person = {
-    name: "Nara",
-    age: 30,
-    hobbies: ["Gaming", "Lifting"],
-    role: Role.ADMIN
-};
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   role: [number, string]; // tuple with fixed length and type
-// } = {
-//   name: "Nara",
-//   age: 30,
-//   hobbies: ["Gaming", "Lifting"],
-//   role: [2, "author"],
-// };
-// length is enforced when assigning or reassigning
-// person.role.push("admin"); // push is allowed in tuples so ts won't catch this
-// person.role[1] = 10;
-var favoriteActivities;
-favoriteActivities = ["Jogging"];
-for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
-    var hobby = _a[_i];
-    console.log(hobby);
+// union type in ts
+function combine(input1, input2, resultConversion) {
+    // you can have more than two pipes/types
+    var result;
+    if ((typeof input1 === "number" && typeof input2 === "number") ||
+        resultConversion === "as-number") {
+        result = +input1 + +input2;
+    }
+    else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+    //   if (resultConversion === "as-number") {
+    //     return +result;
+    //   } else {
+    //     return result.toString();
+    //   }
 }
-// explicit type assignment
-// const person: {
-//   name: string;
-//   age: number;
-// } = {
-//   name: "Nara",
-//   age: 30,
-// };
-console.log(person.name);
+var combinedAges = combine(30, 26, "as-number");
+console.log(combinedAges);
+var combinedStringAges = combine("30", "26", "as-number");
+console.log(combinedStringAges);
+var combinedNams = combine("Nara", "Seungyoon", "as-text");
+console.log(combinedNams);
