@@ -1,1 +1,1 @@
-console.log("My code");
+// union type in ts
