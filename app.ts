@@ -1,8 +1,11 @@
+type Combinable = number | string;
+type ConversionDescriptor = "as-number" | "as-text";
+
 // union type in ts
 function combine(
-  input1: number | string,
-  input2: number | string,
-  resultConversion: "as-number" | "as-text" // literal types
+  input1: Combinable, // instead of number | string
+  input2: Combinable,
+  resultConversion: ConversionDescriptor // literal types
 ) {
   // you can have more than two pipes/types
   let result;
