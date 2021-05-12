@@ -7,6 +7,17 @@ function printResult(num: number): void {
   console.log("result" + num);
 }
 
+function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
+  // see line 17 regarding void callback
+  const result = n1 + n2;
+  cb(result);
+}
+
+addAndHandle(10, 20, (result) => {
+  console.log(result);
+  //   return result; although specified to not return anything, this is legal, but it just won't be used in any way
+});
+
 printResult(add(5, 12));
 
 // function types

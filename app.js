@@ -5,6 +5,14 @@ function printResult(num) {
     // can have a return type of undefined e.g. return;
     console.log("result" + num);
 }
+function addAndHandle(n1, n2, cb) {
+    var result = n1 + n2;
+    cb(result);
+}
+addAndHandle(10, 20, function (result) {
+    console.log(result);
+    return result;
+});
 printResult(add(5, 12));
 // function types
 var combineValues;
