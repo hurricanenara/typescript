@@ -18,4 +18,4 @@ function generateError(message: string, code: number): never {
   //   while (true) {} is also a never function
 }
 
-generateError("An error occurred", 500);
+generateError("An error occurred...", 500);
