@@ -1,29 +1,21 @@
-function add(n1: number, n2: number): number {
-  return n1 + n2;
+let userInput: unknown; // not any - unknown is more restrictive
+let userName: string;
+
+userInput = 5;
+userInput = "Nara";
+// userName = userInput; // this is not allowed as userInput is of type unknown
+// but this is allowed
+if (typeof userInput === "string") {
+  userName = userInput;
 }
 
-function printResult(num: number): void {
-  // can have a return type of undefined e.g. return;
-  console.log("result" + num);
+// the never type
+function generateError(message: string, code: number): never {
+  //without never, it will be inferred with void though
+  // instead of using void, using never is better as it will NEVER return anything
+  // throw crashes this part of the script, therefore never returns anything
+  throw { message: message, errorCode: code };
+  //   while (true) {} is also a never function
 }
 
-function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
-  // see line 17 regarding void callback
-  const result = n1 + n2;
-  cb(result);
-}
-
-addAndHandle(10, 20, (result) => {
-  console.log(result);
-  //   return result; although specified to not return anything, this is legal, but it just won't be used in any way
-});
-
-printResult(add(5, 12));
-
-// function types
-let combineValues: (a: number, b: number) => number;
-combineValues = add;
-// combineValues = 5;
-console.log(combineValues(8, 8));
-
-// let someValue: undefined; //is valid
+generateError("An error occurred", 500);
