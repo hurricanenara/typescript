@@ -1,4 +1,7 @@
 class Department {
+  // static props are not available inside of other class props -but can be used like Department.props
+  // static props are detached from instances
+  static fiscalYear = 2021;
   //   private id: string;
   //   private name: string;
   // if private is used over protected, it will only be available in this lass
@@ -8,6 +11,11 @@ class Department {
     // shorthand initialization in params
     // readonly prohibits it from changing
     // this.name = n;
+    // console.log(Department.fiscalYear); // this works
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   describe(this: Department) {
@@ -70,6 +78,9 @@ class AccountingDepartment extends Department {
     console.log(this.reports);
   }
 }
+
+const employee1 = Department.createEmployee("Nara");
+console.log(employee1, Department.fiscalYear);
 
 const accounting = new AccountingDepartment("a1", []);
 
