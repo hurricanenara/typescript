@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
   // static props are not available inside of other class props -but can be used like Department.props
   // static props are detached from instances
   static fiscalYear = 2021;
@@ -7,7 +7,7 @@ class Department {
   // if private is used over protected, it will only be available in this lass
   protected employees: string[] = []; // use protected over private to have access from child classes
 
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     // shorthand initialization in params
     // readonly prohibits it from changing
     // this.name = n;
@@ -18,9 +18,7 @@ class Department {
     return { name: name };
   }
 
-  describe(this: Department) {
-    console.log(`Department ${this.id}: ${this.name}`);
-  }
+  abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
     this.employees.push(employee);
@@ -37,6 +35,10 @@ class ITDepartment extends Department {
   constructor(id: string, admins: string[]) {
     super(id, "IT");
     this.admins = admins;
+  }
+
+  describe() {
+    console.log(`IT Dept ID - ${this.id}`);
   }
 }
 
@@ -63,6 +65,10 @@ class AccountingDepartment extends Department {
     this.lastReport = reports[0];
   }
 
+  describe() {
+    console.log(`Accounting Dept - ID: ${this.id}`);
+  }
+
   // adding our own method of addEmployee by overriding
   addEmployee(name: string) {
     if (name === "Nara") {
@@ -80,7 +86,7 @@ class AccountingDepartment extends Department {
 }
 
 const employee1 = Department.createEmployee("Nara");
-console.log(employee1, Department.fiscalYear);
+// console.log(employee1, Department.fiscalYear);
 
 const accounting = new AccountingDepartment("a1", []);
 
@@ -89,18 +95,21 @@ accounting.mostRecentReport = "Second Report";
 accounting.addEmployee("Nara");
 accounting.addEmployee("Gammie");
 
-console.log(accounting.mostRecentReport);
+accounting.describe();
+
+// console.log(accounting.mostRecentReport);
 
 const it = new ITDepartment("i1", ["Nara"]);
 it.addEmployee("Nara");
 it.addEmployee("Gammie");
+it.describe();
 
 // accounting.employees[2] = "P"; // avoid having more than one way to add
 
 // it.describe();
 // it.printEmployeeInformation();
 // console.log(it);
-console.log(accounting);
+// console.log(accounting);
 
 // const accountingCopy = { name: "s", describe: accounting.describe };
 // accountingCopy.describe();
