@@ -10,6 +10,9 @@ function add(a, b) {
     }
     return a + b;
 }
+var result = add("Nara", "Seungyoon");
+var result2 = add("Nara", 1);
+result.split("");
 function printEmployeeInformation(emp) {
     console.log("Name: " + emp.name);
     if ("privileges" in emp) {
@@ -66,3 +69,7 @@ if (userInput) {
     userInput.value = "Hi There";
 }
 userInput.value = "Hi There";
+var errorBag = {
+    email: "Not a valid email",
+    username: "Must start with a capital letter",
+};

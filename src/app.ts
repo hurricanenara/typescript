@@ -30,12 +30,24 @@ type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric;
 
+// function add(a: number): number; // works with one param if b is made optional on line 35
+function add(a: number, b: number): number; // function overload
+function add(a: string, b: string): string; // function overload
+function add(a: number, b: string): string; // function overload
+function add(a: string, b: number): string; // function overload
 function add(a: Combinable, b: Combinable) {
   if (typeof a === "string" || typeof b === "string") {
     return a.toString() + b.toString();
   }
   return a + b;
 }
+
+// function overload
+
+// const result = add("Nara", "Seungyoon") as string; // add as string to make split work
+const result = add("Nara", "Seungyoon"); // add as string to make split work
+const result2 = add("Nara", 1); //
+result.split("");
 
 type UnknownEmployee = Employee | Admin;
 
@@ -124,7 +136,7 @@ userInput.value = "Hi There";
 // Index properties
 interface ErrorContainer {
   // {email: "Not a valid email", username: "must start with..."}
-  id: string;
+  // id: string;
   [prop: string]: string;
 }
 
@@ -132,3 +144,5 @@ const errorBag: ErrorContainer = {
   email: "Not a valid email",
   username: "Must start with a capital letter",
 };
+
+// function overloads - multiple ways to call a function with different params
