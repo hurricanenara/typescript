@@ -1,4 +1,5 @@
 "use strict";
+var _a;
 var e1 = {
     name: "Nara",
     privileges: ["create-server"],
@@ -13,6 +14,12 @@ function add(a, b) {
 var result = add("Nara", "Seungyoon");
 var result2 = add("Nara", 1);
 result.split("");
+var fetchedUserData = {
+    id: "u1",
+    name: "Nara",
+    job: { title: "CEO", description: "Naracoin" },
+};
+console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
 function printEmployeeInformation(emp) {
     console.log("Name: " + emp.name);
     if ("privileges" in emp) {

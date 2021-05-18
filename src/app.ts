@@ -49,6 +49,17 @@ const result = add("Nara", "Seungyoon"); // add as string to make split work
 const result2 = add("Nara", 1); //
 result.split("");
 
+// optional chaining
+
+const fetchedUserData = {
+  id: "u1",
+  name: "Nara",
+  job: { title: "CEO", description: "Naracoin" },
+};
+
+// console.log(fetchedUserData.job && fetchedUserData.job.title);
+console.log(fetchedUserData?.job?.title); // compiles to an if check
+
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee) {
