@@ -108,3 +108,15 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({ type: "bird", flyingSpeed: 10 });
+
+// type casting
+// ! -> will never yield null
+// const userInput = <HTMLInputElement>document.getElementById("user-input")!;
+const userInput = document.getElementById("user-input")! as HTMLInputElement;
+
+// alternative
+if (userInput) {
+  (userInput as HTMLInputElement).value = "Hi There";
+}
+
+userInput.value = "Hi There";
