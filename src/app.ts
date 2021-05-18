@@ -43,5 +43,22 @@ const mergedObj2 = merge<{ name: string; hobbies: string[] }, { age: number }>(
 //   name: string;
 //   age: number;
 // }; // but cumbersome
-console.log(mergedObj);
-console.log(mergedObj2);
+// console.log(mergedObj);
+// console.log(mergedObj2);
+
+interface Lengthy {
+  length: number;
+}
+
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = "Got no value";
+  if (element.length === 1) {
+    descriptionText = `Got 1 element`;
+  } else if (element.length > 1) {
+    descriptionText = `Got ${element.length} elements`;
+  }
+  return [element, descriptionText];
+}
+
+console.log(countAndDescribe("Hi there!"));
+console.log(countAndDescribe(["1", "2"]));
