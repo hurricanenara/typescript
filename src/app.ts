@@ -24,6 +24,8 @@
 //   // does not work with :object type
 //   return Object.assign(objA, objB);
 // }
+
+// what we are doing by extending is we are providing constraints!
 function merge<T extends object, U extends object>(objA: T, objB: U) {
   // function merge<T extends string | number, U extends object>(objA: T, objB: U) { flexible extensions
   // returns intersection of the two inputs
