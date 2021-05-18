@@ -14,5 +14,7 @@ function countAndDescribe(element) {
     }
     return [element, descriptionText];
 }
-console.log(countAndDescribe("Hi there!"));
-console.log(countAndDescribe(["1", "2"]));
+function extractAndConvert(obj, key) {
+    return "Value: " + obj[key];
+}
+extractAndConvert({ name: "Nara" }, "name");
