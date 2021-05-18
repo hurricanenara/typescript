@@ -20,6 +20,9 @@ var fetchedUserData = {
     job: { title: "CEO", description: "Naracoin" },
 };
 console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
+var inputFromUser = undefined;
+var storedData = inputFromUser !== null && inputFromUser !== void 0 ? inputFromUser : "Default";
+console.log(storedData);
 function printEmployeeInformation(emp) {
     console.log("Name: " + emp.name);
     if ("privileges" in emp) {

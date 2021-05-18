@@ -60,6 +60,15 @@ const fetchedUserData = {
 // console.log(fetchedUserData.job && fetchedUserData.job.title);
 console.log(fetchedUserData?.job?.title); // compiles to an if check
 
+// nullish coalescing
+
+// const inputFromUser = "";
+const inputFromUser = undefined;
+
+const storedData = inputFromUser ?? "Default"; // ?? nullish coalescing - really just null or undefined
+
+console.log(storedData);
+
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee) {
