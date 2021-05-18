@@ -106,3 +106,29 @@ const numberStorage = new DataStorage<number>();
 // objStorage.addItem({ name: "Seungyoon" });
 // objStorage.removeItem(naraObj);
 // console.log(objStorage.getItems());
+
+// Partial Type
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  //   return courseGoal; won't work
+  return courseGoal as CourseGoal;
+}
+
+// readonly type
+const names: Readonly<string[]> = ["Nara", "Seungyoon"];
+// readonly prohibits push and pop
+names.push("Paul");
+names.pop();
