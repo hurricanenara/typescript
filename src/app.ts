@@ -74,6 +74,8 @@ extractAndConvert({ name: "Nara" }, "name");
 
 // generic classes
 class DataStorage<T extends string | number | boolean> {
+  // allows you to choose a data type and allow only that data type to be added/removed
+  //   private data: (string | number | boolean)[] = []; with class DataStorage {}
   private data: T[] = [];
 
   addItem(item: T) {
@@ -132,3 +134,6 @@ const names: Readonly<string[]> = ["Nara", "Seungyoon"];
 // readonly prohibits push and pop
 names.push("Paul");
 names.pop();
+
+// generic types LOCK IN a type
+// union types are more flexible
