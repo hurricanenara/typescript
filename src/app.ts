@@ -120,3 +120,15 @@ if (userInput) {
 }
 
 userInput.value = "Hi There";
+
+// Index properties
+interface ErrorContainer {
+  // {email: "Not a valid email", username: "must start with..."}
+  id: string;
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: "Not a valid email",
+  username: "Must start with a capital letter",
+};
