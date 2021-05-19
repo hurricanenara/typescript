@@ -1,52 +1,22 @@
 "use strict";
-function merge(objA, objB) {
-    return Object.assign(objA, objB);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+function Logger(constructor) {
+    console.log("Logging...");
+    console.log(constructor);
 }
-const mergedObj = merge({ name: "Nara" }, { age: 30 });
-const mergedObj2 = merge({ name: "Nara", hobbies: ["hobby1"] }, { age: 30 });
-function countAndDescribe(element) {
-    let descriptionText = "Got no value";
-    if (element.length === 1) {
-        descriptionText = `Got 1 element`;
-    }
-    else if (element.length > 1) {
-        descriptionText = `Got ${element.length} elements`;
-    }
-    return [element, descriptionText];
-}
-function extractAndConvert(obj, key) {
-    return "Value: " + obj[key];
-}
-extractAndConvert({ name: "Nara" }, "name");
-class DataStorage {
+let Person = class Person {
     constructor() {
-        this.data = [];
+        this.name = "Nara";
+        console.log("Creating Person object...");
     }
-    addItem(item) {
-        this.data.push(item);
-    }
-    removeItem(item) {
-        if (this.data.indexOf(item) === -1) {
-            return;
-        }
-        this.data.splice(this.data.indexOf(item), 1);
-    }
-    getItems() {
-        return [...this.data];
-    }
-}
-const textStorage = new DataStorage();
-textStorage.addItem("Nara");
-textStorage.addItem("Seungyoon");
-textStorage.removeItem("Seungyoon");
-console.log(textStorage.getItems());
-const numberStorage = new DataStorage();
-function createCourseGoal(title, description, date) {
-    let courseGoal = {};
-    courseGoal.title = title;
-    courseGoal.description = description;
-    courseGoal.completeUntil = date;
-    return courseGoal;
-}
-const names = ["Nara", "Seungyoon"];
-names.push("Paul");
+};
+Person = __decorate([
+    Logger
+], Person);
+const per = new Person();
+console.log(per);
