@@ -11,6 +11,16 @@ function Logger(logString) {
         console.log(constructor);
     };
 }
+function WithTemplate(template, hookId) {
+    return function (constructor) {
+        const hookEl = document.getElementById(hookId);
+        const p = new constructor();
+        if (hookEl) {
+            hookEl.innerHTML = template;
+            hookEl.querySelector("h1").textContent = p.name;
+        }
+    };
+}
 let Person = class Person {
     constructor() {
         this.name = "Nara";
@@ -18,6 +28,6 @@ let Person = class Person {
     }
 };
 Person = __decorate([
-    Logger("Logging - Person")
+    WithTemplate("<h1>Person Object</h1>", "app")
 ], Person);
 const per = new Person();
