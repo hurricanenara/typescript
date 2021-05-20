@@ -81,7 +81,7 @@ class Product {
   title: string;
   private _price: number;
 
-  @Log2
+  @Log2 // accessor decorator
   set price(val: number) {
     if (val > 0) {
       this._price = val;
@@ -95,10 +95,47 @@ class Product {
     this._price = p;
   }
 
-  @Log3
+  @Log3 // method decorator
   getPriceWithTax(@Log4 tax: number) {
     return this._price * (1 + tax);
   }
 }
 
-// making decorators execute when classes are instantiated
+function Autobind(
+  _: any, // changed to _ from target since not used
+  _2: string | Symbol, // changed to _ from methodName since not used
+  desciptor: PropertyDescriptor
+) {
+  const originalMethod = desciptor.value; // gives us the original method/function
+  const adjDescriptor: PropertyDescriptor = {
+    configurable: true,
+    enumerable: false,
+    // getter layer binds the method to the class
+    get() {
+      const boundFn = originalMethod.bind(this);
+      return boundFn;
+    },
+  };
+  return adjDescriptor;
+}
+
+class Printer {
+  message = "This works!";
+
+  @Autobind
+  showMessage() {
+    console.log(this.message);
+  }
+  // locally scoped with arrow function without decorator
+  // showMessage = () => {
+  //   console.log(this.message);
+  // };
+}
+
+// after autobind it works like this as well
+// printer.showMessage();
+
+const button = document.querySelector("button")!;
+const printer = new Printer();
+button.addEventListener("click", printer.showMessage);
+// button.addEventListener("click", printer.showMessage.bind(printer)); // bind method
