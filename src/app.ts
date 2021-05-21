@@ -186,6 +186,31 @@ function validate(obj: any) {
   return isValid;
 }
 
+// bug-free
+/*
+const registeredValidators: ValidatorConfig = {};
+
+function Required(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: [
+      ...registeredValidators[target.constructor.name][propName],
+      "required",
+    ],
+  };
+}
+
+function PositiveNumber(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: [
+      ...registeredValidators[target.constructor.name][propName],
+      "positive",
+    ],
+  };
+}
+*/
+
 class Course {
   @Required
   title: string;
