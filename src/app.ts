@@ -1,3 +1,21 @@
+// autobind decorator
+function autobind(
+  _: any, // target
+  _2: string, // methodName
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value;
+  const adjustedDescriptor: PropertyDescriptor = {
+    configurable: true,
+    get() {
+      const boundFn = originalMethod.bind(this);
+      return boundFn;
+    },
+  };
+  return adjustedDescriptor;
+}
+
+// ProjectInput class
 class ProjectInput {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
@@ -19,6 +37,7 @@ class ProjectInput {
     ); // true -> deep clone or not
     this.element = importedNode.firstElementChild as HTMLFormElement;
     this.element.id = "user-input";
+
     this.titleInputElement = this.element.querySelector(
       "#title"
     ) as HTMLInputElement;
@@ -32,14 +51,15 @@ class ProjectInput {
     this.configure();
     this.attach();
   }
-
+  @autobind
   private submitHandler(event: Event) {
     event.preventDefault();
     console.log(this.titleInputElement.value);
   }
 
   private configure() {
-    this.element.addEventListener("submit", this.submitHandler.bind(this));
+    this.element.addEventListener("submit", this.submitHandler); // autobind example
+    // this.element.addEventListener("submit", this.submitHandler.bind(this));
   }
 
   private attach() {
